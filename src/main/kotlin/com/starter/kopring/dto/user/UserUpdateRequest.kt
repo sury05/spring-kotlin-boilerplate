@@ -1,0 +1,8 @@
+package com.starter.kopring.dto.user
+
+import com.starter.kopring.enum.Role
+import javax.validation.constraints.NotNull
+
+data class UserUpdateRequest(
+    @NotNull(message = "role can't be empty")
+    val role: Role)
