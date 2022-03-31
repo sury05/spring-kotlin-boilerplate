@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+  purifier-db:
+    image: mysql:5.7.33
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: purifier
+      MYSQL_USER: purifier_admin
+      MYSQL_PASSWORD: purifier_admin
+      MYSQL_DATABASE: admin
+
+volumes:
+  mysql-data:
