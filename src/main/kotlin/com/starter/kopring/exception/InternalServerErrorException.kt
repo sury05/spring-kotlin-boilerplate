@@ -2,8 +2,8 @@ package com.starter.kopring.exception
 
 import org.springframework.http.HttpStatus
 
-class WebClientAuthException(
-    message: String,
+class InternalServerErrorException(
+    message: String = "internal server error",
     override val logLevel: LogLevel = LogLevel.ERROR
 ) : BaseException(message) {
     override fun getHttpStatus(): HttpStatus {
