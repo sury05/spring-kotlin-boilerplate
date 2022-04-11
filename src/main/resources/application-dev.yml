@@ -15,7 +15,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/admin?characterEncoding=UTF-8&serverTimezone=UTC
     username: root
-    password: root
+    password: ENC(g9LpM3RdzrmOPlwsTlPhVw==)
+
 
 logging:
   level:
@@ -27,5 +28,3 @@ auth-service:
   base-url: "http://localhost:8080/api/auth"
   client-id: "client-id"
   secret-id: "secret-id"
-
-

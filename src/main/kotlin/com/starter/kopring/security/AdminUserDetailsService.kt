@@ -1,7 +1,7 @@
 package com.starter.kopring.security
 
 import com.starter.kopring.domain.User
-import com.starter.kopring.enum.Role
+import com.starter.kopring.enums.Role
 import com.starter.kopring.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetails

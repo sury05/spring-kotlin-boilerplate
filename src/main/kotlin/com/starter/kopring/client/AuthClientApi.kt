@@ -2,7 +2,7 @@ package com.starter.kopring.client
 
 import com.starter.kopring.client.dto.AccessTokenResponse
 import com.starter.kopring.client.dto.AuthResponse
-import com.starter.kopring.exception.WebClientAuthException
+import com.starter.kopring.exceptions.WebClientAuthException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

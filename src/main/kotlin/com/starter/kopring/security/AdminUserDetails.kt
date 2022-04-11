@@ -1,6 +1,6 @@
 package com.starter.kopring.security
 
-import com.starter.kopring.enum.Role
+import com.starter.kopring.enums.Role
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

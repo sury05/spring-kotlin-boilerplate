@@ -12,14 +12,16 @@ spring:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:userdb;DB_CLOSE_DELAY=-1
     username: sa
-    password: sa
-  groovy:
-    template:
-      allow-session-override:
+    password: ENC(yoNB7oszBBzOSGCgHMgAlw==)
+
+jasypt:
+  encryptor:
+    password: jasypt-key # -Djasypt.encryptor.password=jasypt-key
 
 auth-service:
   base-url: "http://localhost:8080/api/auth"
   client-id: "client-id"
   secret-id: "secret-id"
+
 
 

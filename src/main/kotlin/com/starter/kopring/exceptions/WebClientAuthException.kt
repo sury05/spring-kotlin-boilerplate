@@ -1,9 +1,10 @@
-package com.starter.kopring.exception
+package com.starter.kopring.exceptions
 
+import com.starter.kopring.enums.LogLevel
 import org.springframework.http.HttpStatus
 
-class InternalServerErrorException(
-    message: String = "internal server error",
+class WebClientAuthException(
+    message: String,
     override val logLevel: LogLevel = LogLevel.ERROR
 ) : BaseException(message) {
     override fun getHttpStatus(): HttpStatus {

@@ -1,7 +1,11 @@
-package com.starter.kopring.exception.handler
+package com.starter.kopring.exceptions.handler
 
 import com.starter.kopring.dto.ErrorResponse
-import com.starter.kopring.exception.*
+import com.starter.kopring.enums.LogLevel
+import com.starter.kopring.exceptions.BadRequestException
+import com.starter.kopring.exceptions.BaseException
+import com.starter.kopring.exceptions.InternalServerErrorException
+import com.starter.kopring.exceptions.WebClientAuthException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -11,7 +15,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import org.springframework.web.reactive.function.client.WebClientException
+import java.time.LocalDateTime
 import javax.servlet.http.HttpServletRequest
 
 @RestControllerAdvice
@@ -37,26 +41,16 @@ class ExceptionHandler {
         logging(e, request)
         val errorMessage = e.bindingResult.fieldErrors.map {
             "${it.field} : ${it.defaultMessage}"
-        }.joinToString { ", " }
+        }.joinToString(", ")
 
         return toErrorResponse(BadRequestException(errorMessage, LogLevel.INFO), request)
     }
-
 
     @ExceptionHandler(WebClientAuthException::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     fun handleWebClientAuthException(e: WebClientAuthException, request: HttpServletRequest): ErrorResponse {
         logging(e, request)
         return toErrorResponse(e, request)
-    }
-
-    @ExceptionHandler(WebClientException::class)
-    fun handleWebClientException(e: WebClientException, request: HttpServletRequest): ResponseEntity<ErrorResponse> {
-        logging(e, request)
-        return ResponseEntity(
-            ErrorResponse(request.requestURI, HttpStatus.INTERNAL_SERVER_ERROR.value(), e.localizedMessage),
-            HttpStatus.INTERNAL_SERVER_ERROR
-        )
     }
 
     private fun logging(exception: Exception, request: HttpServletRequest) {
@@ -78,10 +72,12 @@ class ExceptionHandler {
     }
 
     private fun toErrorResponse(exception: BaseException, request: HttpServletRequest): ErrorResponse {
-        return ErrorResponse(
-            request.requestURI,
-            exception.getHttpStatus().value(),
-            exception.localizedMessage
-        )
+        return ErrorResponse().apply {
+            this.resultCode = "fail"
+            this.httpStatus = exception.getHttpStatus().value().toString()
+            this.message = exception.localizedMessage
+            this.path = request.requestURI
+            this.timestamp = LocalDateTime.now()
+        }
     }
 }

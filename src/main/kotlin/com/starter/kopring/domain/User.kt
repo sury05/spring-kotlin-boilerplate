@@ -1,7 +1,7 @@
 package com.starter.kopring.domain
 
 import com.starter.kopring.domain.base.BaseEntity
-import com.starter.kopring.enum.Role
+import com.starter.kopring.enums.Role
 import javax.persistence.Column
 import javax.persistence.Entity
 

@@ -1,4 +1,4 @@
-package com.starter.kopring.exception
+package com.starter.kopring.enums
 
 enum class LogLevel {
     ERROR, WARN, INFO, DEBUG, NONE
